@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>405351146469-kje87ic2d3utj5fp7r3gltfu7hv6ej8g.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.405351146469-kje87ic2d3utj5fp7r3gltfu7hv6ej8g</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBVXYGRfKBc2F9c9WYOpa4TZ2zFKE9LFOU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>405351146469</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.innovationcodes.security</string>
+	<key>PROJECT_ID</key>
+	<string>focus-employee-legalities</string>
+	<key>STORAGE_BUCKET</key>
+	<string>focus-employee-legalities.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:405351146469:ios:a1774c898660cf1640050c</string>
+	<key>DATABASE_URL</key>
+	<string>https://focus-employee-legalities.firebaseio.com</string>
+</dict>
+</plist>
