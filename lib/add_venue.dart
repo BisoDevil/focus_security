@@ -34,21 +34,21 @@ class _AddVenueState extends State<AddVenue> {
   }
 
   getCount() async {
-    count = (await Firestore.instance.collection('Venues').getDocuments())
-            .documents
+    count = (await FirebaseFirestore.instance.collection('Venues').get())
+            .docs
             .length +
         1;
   }
 
   Future<String> uploadFile() async {
-    final FirebaseApp app = await FirebaseApp.configure(
+    final FirebaseApp app = await Firebase.initializeApp(
       name: 'Focus',
       options: FirebaseOptions(
-        googleAppID: (Platform.isIOS || Platform.isMacOS)
+        appId: (Platform.isIOS || Platform.isMacOS)
             ? '1:405351146469:ios:a1774c898660cf1640050c'
             : '1:405351146469:android:a1774c898660cf1640050c',
         apiKey: 'AIzaSyBVXYGRfKBc2F9c9WYOpa4TZ2zFKE9LFOU',
-        projectID: 'focus-employee-legalities',
+        projectId: 'focus-employee-legalities',
       ),
     );
     final FirebaseStorage storage = FirebaseStorage(
@@ -94,15 +94,15 @@ class _AddVenueState extends State<AddVenue> {
 
     if (widget.venue.id == null) {
       widget.venue.id = "venue_$count";
-      await Firestore.instance
+      await FirebaseFirestore.instance
           .collection("Venues")
-          .document(widget.venue.id)
-          .setData(widget.venue.toJson());
+          .doc(widget.venue.id)
+          .set(widget.venue.toJson());
     } else {
-      await Firestore.instance
+      await FirebaseFirestore.instance
           .collection("Venues")
-          .document(widget.venue.id)
-          .updateData(widget.venue.toJson());
+          .doc(widget.venue.id)
+          .update(widget.venue.toJson());
     }
     Get.back();
     count++;

@@ -339,21 +339,108 @@ class _QuestionDetailsScreenState extends State<QuestionDetailsScreen> {
                           });
                         }),
                     RadioListTile(
-                        value: "Very Good",
-                        dense: true,
-                        controlAffinity: ListTileControlAffinity.trailing,
-                        title: Text(
-                          'Very Good',
-                        ),
-                        groupValue: widget.employee.questions.writing,
-                        onChanged: (values) {
-                          setState(() {
-                            widget.employee.questions.writing = values;
-                          });
-                        }),
+                      value: "Very Good",
+                      dense: true,
+                      controlAffinity: ListTileControlAffinity.trailing,
+                      title: Text(
+                        'Very Good',
+                      ),
+                      groupValue: widget.employee.questions.writing,
+                      onChanged: (values) {
+                        setState(() {
+                          widget.employee.questions.writing = values;
+                        });
+                      },
+                    ),
                   ],
                 ),
-              )
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: "what is your ABN number ",
+                ),
+                initialValue: widget.employee.questions.abn ?? "",
+                onChanged: (value) {
+                  widget.employee.questions.abn = value;
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: "What is your tax file number",
+                ),
+                initialValue: widget.employee.questions.taxFileNo ?? "",
+                onChanged: (value) {
+                  widget.employee.questions.taxFileNo = value;
+                },
+              ),
+              SizedBox(
+                height: 12,
+              ),
+              Text(
+                "Do you have a valid drivers license ?",
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              RadioListTile(
+                value: "Yes",
+                dense: true,
+                controlAffinity: ListTileControlAffinity.trailing,
+                title: Text(
+                  'Yes',
+                ),
+                groupValue: widget.employee.questions.validLicense,
+                onChanged: (values) {
+                  setState(() {
+                    widget.employee.questions.validLicense = values;
+                  });
+                },
+              ),
+              RadioListTile(
+                value: "NO",
+                dense: true,
+                controlAffinity: ListTileControlAffinity.trailing,
+                title: Text(
+                  'No',
+                ),
+                groupValue: widget.employee.questions.validLicense,
+                onChanged: (values) {
+                  setState(() {
+                    widget.employee.questions.validLicense = values;
+                  });
+                },
+              ),
+              Text(
+                "Who to contact in case of emergency",
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: "Name",
+                ),
+                initialValue: widget.employee.questions.emergency?.name ?? "",
+                onChanged: (value) {
+                  widget.employee.questions.emergency.name = value;
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: "Relationship",
+                ),
+                initialValue:
+                    widget.employee.questions.emergency?.relationship ?? "",
+                onChanged: (value) {
+                  widget.employee.questions.emergency.relationship = value;
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: "Contact number",
+                ),
+                initialValue:
+                    widget.employee.questions.emergency?.contactNumber ?? "",
+                onChanged: (value) {
+                  widget.employee.questions.emergency.contactNumber = value;
+                },
+              ),
             ],
           ),
         ),

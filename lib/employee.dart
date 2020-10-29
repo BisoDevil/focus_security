@@ -271,11 +271,21 @@ class Questions {
   String knowledge = '';
   String speaking = '';
   String reading = '';
+  String emergencyContact = "";
+  String taxFileNo = '';
+  String abn = '';
+  String validLicense = "";
+  Emergency emergency = Emergency();
 
   Questions({
     this.writing = '',
+    this.abn = "",
+    this.emergency,
     this.verbalSkill = '',
     this.listening = '',
+    this.taxFileNo = '',
+    this.validLicense = '',
+    this.emergencyContact = '',
     this.knowledge = '',
     this.speaking = '',
     this.reading = '',
@@ -283,19 +293,52 @@ class Questions {
 
   factory Questions.fromJson(Map<String, dynamic> json) => Questions(
         writing: json["writing"] == null ? null : json["writing"],
+        validLicense:
+            json["validLicense"] == null ? null : json["validLicense"],
         verbalSkill: json["verbalSkill"] == null ? null : json["verbalSkill"],
         listening: json["listening"] == null ? null : json["listening"],
         knowledge: json["knowledge"] == null ? null : json["knowledge"],
         speaking: json["speaking"] == null ? null : json["speaking"],
         reading: json["reading"] == null ? null : json["reading"],
+        abn: json["abn"] == null ? null : json["abn"],
+        taxFileNo: json["taxFileNo"] == null ? null : json["taxFileNo"],
       );
 
   Map<String, dynamic> toJson() => {
         "writing": writing == null ? null : writing,
+        "taxFileNo": taxFileNo == null ? null : taxFileNo,
         "verbalSkill": verbalSkill == null ? null : verbalSkill,
+        "validLicense": validLicense == null ? null : validLicense,
         "listening": listening == null ? null : listening,
         "knowledge": knowledge == null ? null : knowledge,
         "speaking": speaking == null ? null : speaking,
         "reading": reading == null ? null : reading,
+        "abn": abn == null ? null : abn,
+      };
+}
+
+class Emergency {
+  Emergency({
+    this.name = "",
+    this.relationship = "",
+    this.contactNumber = "",
+  });
+
+  String name;
+  String relationship;
+  String contactNumber;
+
+  factory Emergency.fromJson(Map<String, dynamic> json) => Emergency(
+        name: json["name"] == null ? null : json["name"],
+        relationship:
+            json["relationship"] == null ? null : json["relationship"],
+        contactNumber:
+            json["contact_number"] == null ? null : json["contact_number"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "name": name == null ? null : name,
+        "relationship": relationship == null ? null : relationship,
+        "contact_number": contactNumber == null ? null : contactNumber,
       };
 }

@@ -43,8 +43,8 @@ class _DocumentDetailScreenState extends State<DocumentDetailScreen> {
   }
 
   getCount() async {
-    count = (await Firestore.instance.collection('Employee').getDocuments())
-        .documents
+    count = (await FirebaseFirestore.instance.collection('Employee').get())
+        .docs
         .length;
   }
 
@@ -53,14 +53,14 @@ class _DocumentDetailScreenState extends State<DocumentDetailScreen> {
     setState(() {
       isLoading = true;
     });
-    final FirebaseApp app = await FirebaseApp.configure(
+    final FirebaseApp app = await Firebase.initializeApp(
       name: 'Focus',
       options: FirebaseOptions(
-        googleAppID: (Platform.isIOS || Platform.isMacOS)
+        appId: (Platform.isIOS || Platform.isMacOS)
             ? '1:405351146469:ios:a1774c898660cf1640050c'
             : '1:405351146469:android:a1774c898660cf1640050c',
         apiKey: 'AIzaSyBVXYGRfKBc2F9c9WYOpa4TZ2zFKE9LFOU',
-        projectID: 'focus-employee-legalities',
+        projectId: 'focus-employee-legalities',
       ),
     );
     final FirebaseStorage storage = FirebaseStorage(

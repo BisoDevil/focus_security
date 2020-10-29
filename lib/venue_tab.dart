@@ -103,7 +103,8 @@ class _VenueScreenState extends State<VenueScreen> {
             child: Container(
               width: MediaQuery.of(context).size.width,
               child: StreamBuilder<QuerySnapshot>(
-                stream: Firestore.instance.collection('Venues').snapshots(),
+                stream:
+                    FirebaseFirestore.instance.collection('Venues').snapshots(),
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot> snapshot) {
                   if (snapshot.hasError)
@@ -113,8 +114,8 @@ class _VenueScreenState extends State<VenueScreen> {
                       return Center(child: Text('Loading...'));
                     default:
                       allEmps.clear();
-                      for (var item in snapshot.data.documents) {
-                        allEmps.add(Venue.fromJson(item.data));
+                      for (var item in snapshot.data.docs) {
+                        allEmps.add(Venue.fromJson(item.data()));
                       }
                       List<Venue> filtered = allEmps
                           .where((element) =>

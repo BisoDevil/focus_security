@@ -70,8 +70,8 @@ class _AddEmployeeState extends State<AddEmployee> {
   }
 
   getCount() async {
-    count = (await Firestore.instance.collection('Employees').getDocuments())
-            .documents
+    count = (await FirebaseFirestore.instance.collection('Employees').get())
+            .docs
             .length +
         1;
 
@@ -93,15 +93,15 @@ class _AddEmployeeState extends State<AddEmployee> {
 
     if (widget.employee.id == null) {
       widget.employee.id = "emp_$count";
-      await Firestore.instance
+      await FirebaseFirestore.instance
           .collection("Employees")
-          .document(widget.employee.id)
-          .setData(widget.employee.toJson());
+          .doc(widget.employee.id)
+          .set(widget.employee.toJson());
     } else {
-      await Firestore.instance
+      await FirebaseFirestore.instance
           .collection("Employees")
-          .document(widget.employee.id)
-          .updateData(widget.employee.toJson());
+          .doc(widget.employee.id)
+          .update(widget.employee.toJson());
     }
     Get.back();
     count++;
@@ -115,14 +115,14 @@ class _AddEmployeeState extends State<AddEmployee> {
   }
 
   Future<String> uploadImage() async {
-    final FirebaseApp app = await FirebaseApp.configure(
+    final FirebaseApp app = await Firebase.initializeApp(
       name: 'Focus',
       options: FirebaseOptions(
-        googleAppID: (Platform.isIOS || Platform.isMacOS)
+        appId: (Platform.isIOS || Platform.isMacOS)
             ? '1:405351146469:ios:a1774c898660cf1640050c'
             : '1:405351146469:android:a1774c898660cf1640050c',
         apiKey: 'AIzaSyBVXYGRfKBc2F9c9WYOpa4TZ2zFKE9LFOU',
-        projectID: 'focus-employee-legalities',
+        projectId: 'focus-employee-legalities',
       ),
     );
     final FirebaseStorage storage = FirebaseStorage(
@@ -526,7 +526,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                 ],
               ),
               MultiSelectFormField(
-                titleText: 'Approved as ',
+                title: Text('Approved as '),
 
                 dataSource: [
                   {"display": "Armed guard", "value": "Armed guard"},
@@ -565,7 +565,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                   });
                 },
                 // required: true,
-                hintText: 'Please choose one or more',
+                hintWidget: Text('Please choose one or more'),
               ),
               SwitchListTile(
                   title: Text('Are you citizen of Australia'),

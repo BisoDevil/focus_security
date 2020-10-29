@@ -76,7 +76,9 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Container(
               width: MediaQuery.of(context).size.width,
               child: StreamBuilder<QuerySnapshot>(
-                stream: Firestore.instance.collection('Employees').snapshots(),
+                stream: FirebaseFirestore.instance
+                    .collection('Employees')
+                    .snapshots(),
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot> snapshot) {
                   if (snapshot.hasError)
@@ -86,8 +88,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       return Center(child: Text('Loading...'));
                     default:
                       this.allEmps.clear();
-                      for (var item in snapshot.data.documents) {
-                        allEmps.add(Employee.fromJson(item.data));
+                      for (var item in snapshot.data.docs) {
+                        allEmps.add(Employee.fromJson(item.data()));
                       }
                       List<Employee> filtered = allEmps
                           .where((element) =>

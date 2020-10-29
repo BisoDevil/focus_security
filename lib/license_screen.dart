@@ -60,7 +60,7 @@ class LicenseScreen extends StatelessWidget {
         ),
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: Firestore.instance.collection('Employees').snapshots(),
+        stream: FirebaseFirestore.instance.collection('Employees').snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) return Text('Error: ${snapshot.error}');
           switch (snapshot.connectionState) {
@@ -68,8 +68,8 @@ class LicenseScreen extends StatelessWidget {
               return Center(child: Text('Loading...'));
             default:
               list.clear();
-              for (var item in snapshot.data.documents) {
-                Employee employee = Employee.fromJson(item.data);
+              for (var item in snapshot.data.docs) {
+                Employee employee = Employee.fromJson(item.data());
                 if (employee.expiryDate != null) {
                   if (employee.expiryDate.difference(DateTime.now()).inDays <=
                       30) {
